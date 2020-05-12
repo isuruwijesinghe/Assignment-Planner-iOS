@@ -9,25 +9,41 @@
 /* Begin PBXBuildFile section */
 		3A0A032A24682BF30071524E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A032924682BF30071524E /* AppDelegate.swift */; };
 		3A0A032C24682BF30071524E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A032B24682BF30071524E /* SceneDelegate.swift */; };
-		3A0A032E24682BF30071524E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A032D24682BF30071524E /* ViewController.swift */; };
 		3A0A033124682BF30071524E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A032F24682BF30071524E /* Main.storyboard */; };
 		3A0A033424682BF30071524E /* Assesment_Planner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A033224682BF30071524E /* Assesment_Planner.xcdatamodeld */; };
 		3A0A033624682BF60071524E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A033524682BF60071524E /* Assets.xcassets */; };
 		3A0A033924682BF60071524E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A033724682BF60071524E /* LaunchScreen.storyboard */; };
-		3A0A034124682FBC0071524E /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A034024682FBC0071524E /* MainSplitViewController.swift */; };
+		3A6C60AE246879C1001F2A3F /* AssessmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60AD246879C1001F2A3F /* AssessmentDetailViewController.swift */; };
+		3A6C60B0246879DE001F2A3F /* AssessmentSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60AF246879DE001F2A3F /* AssessmentSummaryViewController.swift */; };
+		3A6C60B32468A066001F2A3F /* AddAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60B22468A066001F2A3F /* AddAssessmentViewController.swift */; };
+		3A6C60B52468B1CF001F2A3F /* AssessmentListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60B42468B1CF001F2A3F /* AssessmentListTableViewCell.swift */; };
+		3A6C60B92468B2EF001F2A3F /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60B82468B2EF001F2A3F /* MainTableViewController.swift */; };
+		3A6C60BC246A7BB3001F2A3F /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60BB246A7BB3001F2A3F /* AddTaskViewController.swift */; };
+		3A6C60BE246AC1F6001F2A3F /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60BD246AC1F6001F2A3F /* TaskTableViewCell.swift */; };
+		3A6C60C0246AC642001F2A3F /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60BF246AC642001F2A3F /* TaskTableViewController.swift */; };
+		3A6C60C2246AF367001F2A3F /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60C1246AF367001F2A3F /* EditTaskViewController.swift */; };
+		3A6C60C4246B19A1001F2A3F /* EditAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C60C3246B19A1001F2A3F /* EditAssessmentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A0A032624682BF30071524E /* Assesment-Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assesment-Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A0A032624682BF30071524E /* Assessment-Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assessment-Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0A032924682BF30071524E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0A032B24682BF30071524E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3A0A032D24682BF30071524E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A0A033024682BF30071524E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A0A033324682BF30071524E /* Assesment_Planner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Assesment_Planner.xcdatamodel; sourceTree = "<group>"; };
 		3A0A033524682BF60071524E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A0A033824682BF60071524E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0A033A24682BF60071524E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A0A034024682FBC0071524E /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
+		3A6C60AD246879C1001F2A3F /* AssessmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentDetailViewController.swift; sourceTree = "<group>"; };
+		3A6C60AF246879DE001F2A3F /* AssessmentSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentSummaryViewController.swift; sourceTree = "<group>"; };
+		3A6C60B22468A066001F2A3F /* AddAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssessmentViewController.swift; sourceTree = "<group>"; };
+		3A6C60B42468B1CF001F2A3F /* AssessmentListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentListTableViewCell.swift; sourceTree = "<group>"; };
+		3A6C60B82468B2EF001F2A3F /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		3A6C60BB246A7BB3001F2A3F /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		3A6C60BD246AC1F6001F2A3F /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		3A6C60BF246AC642001F2A3F /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		3A6C60C1246AF367001F2A3F /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		3A6C60C3246B19A1001F2A3F /* EditAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAssessmentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +68,7 @@
 		3A0A032724682BF30071524E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A0A032624682BF30071524E /* Assesment-Planner.app */,
+				3A0A032624682BF30071524E /* Assessment-Planner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,17 +76,41 @@
 		3A0A032824682BF30071524E /* Assesment-Planner */ = {
 			isa = PBXGroup;
 			children = (
+				3A6C60BA246A7B8D001F2A3F /* Task */,
+				3A6C60B124689A18001F2A3F /* Assesments */,
 				3A0A032924682BF30071524E /* AppDelegate.swift */,
 				3A0A032B24682BF30071524E /* SceneDelegate.swift */,
-				3A0A032D24682BF30071524E /* ViewController.swift */,
 				3A0A032F24682BF30071524E /* Main.storyboard */,
 				3A0A033524682BF60071524E /* Assets.xcassets */,
 				3A0A033724682BF60071524E /* LaunchScreen.storyboard */,
 				3A0A033A24682BF60071524E /* Info.plist */,
 				3A0A033224682BF30071524E /* Assesment_Planner.xcdatamodeld */,
-				3A0A034024682FBC0071524E /* MainSplitViewController.swift */,
+				3A6C60AD246879C1001F2A3F /* AssessmentDetailViewController.swift */,
+				3A6C60B82468B2EF001F2A3F /* MainTableViewController.swift */,
 			);
 			path = "Assesment-Planner";
+			sourceTree = "<group>";
+		};
+		3A6C60B124689A18001F2A3F /* Assesments */ = {
+			isa = PBXGroup;
+			children = (
+				3A6C60AF246879DE001F2A3F /* AssessmentSummaryViewController.swift */,
+				3A6C60B22468A066001F2A3F /* AddAssessmentViewController.swift */,
+				3A6C60B42468B1CF001F2A3F /* AssessmentListTableViewCell.swift */,
+				3A6C60C3246B19A1001F2A3F /* EditAssessmentViewController.swift */,
+			);
+			path = Assesments;
+			sourceTree = "<group>";
+		};
+		3A6C60BA246A7B8D001F2A3F /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				3A6C60BB246A7BB3001F2A3F /* AddTaskViewController.swift */,
+				3A6C60BD246AC1F6001F2A3F /* TaskTableViewCell.swift */,
+				3A6C60BF246AC642001F2A3F /* TaskTableViewController.swift */,
+				3A6C60C1246AF367001F2A3F /* EditTaskViewController.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,7 +130,7 @@
 			);
 			name = "Assesment-Planner";
 			productName = "Assesment-Planner";
-			productReference = 3A0A032624682BF30071524E /* Assesment-Planner.app */;
+			productReference = 3A0A032624682BF30071524E /* Assessment-Planner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -144,10 +184,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A0A034124682FBC0071524E /* MainSplitViewController.swift in Sources */,
+				3A6C60AE246879C1001F2A3F /* AssessmentDetailViewController.swift in Sources */,
+				3A6C60B32468A066001F2A3F /* AddAssessmentViewController.swift in Sources */,
+				3A6C60C4246B19A1001F2A3F /* EditAssessmentViewController.swift in Sources */,
+				3A6C60BE246AC1F6001F2A3F /* TaskTableViewCell.swift in Sources */,
+				3A6C60B52468B1CF001F2A3F /* AssessmentListTableViewCell.swift in Sources */,
+				3A6C60B92468B2EF001F2A3F /* MainTableViewController.swift in Sources */,
+				3A6C60C0246AC642001F2A3F /* TaskTableViewController.swift in Sources */,
+				3A6C60B0246879DE001F2A3F /* AssessmentSummaryViewController.swift in Sources */,
+				3A6C60C2246AF367001F2A3F /* EditTaskViewController.swift in Sources */,
 				3A0A033424682BF30071524E /* Assesment_Planner.xcdatamodeld in Sources */,
-				3A0A032E24682BF30071524E /* ViewController.swift in Sources */,
 				3A0A032A24682BF30071524E /* AppDelegate.swift in Sources */,
+				3A6C60BC246A7BB3001F2A3F /* AddTaskViewController.swift in Sources */,
 				3A0A032C24682BF30071524E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,7 +348,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.isuru.cw2.Assesment-Planner";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Assessment-Planner";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -318,7 +366,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.isuru.cw2.Assesment-Planner";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Assessment-Planner";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

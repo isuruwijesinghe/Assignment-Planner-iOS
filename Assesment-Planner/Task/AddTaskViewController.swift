@@ -75,6 +75,7 @@ class AddTaskViewController: UIViewController {
                     content.title = taskName!
                     content.subtitle = "Assessment Task Overdue"
                     content.body = taskNote!
+                    content.categoryIdentifier = "alarm"
                     content.badge = 1
                     
                     let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: dueDate)

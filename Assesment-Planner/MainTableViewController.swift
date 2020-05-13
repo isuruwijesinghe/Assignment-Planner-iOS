@@ -34,11 +34,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        super.viewWillAppear(animated)
-    }
-    
+  
     @IBAction func editBtnClick(_ sender: UIBarButtonItem) {
         if buttonEdit.title == "Edit"{
             tableView.setEditing(true, animated: true)
@@ -55,18 +51,14 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
-            print("its here")
             if let indexPath = tableView.indexPathForSelectedRow {
             let object = fetchedResultsController.object(at: indexPath)
                 let controller = segue.destination as? AssessmentDetailViewController
                 controller!.assessment = object
             }
         }else if segue.identifier == "editAssessment"{
-//            if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let object = fetchedResultsController.object(at: indexPath)
                 let controller = segue.destination as? EditAssessmentViewController
                 controller!.current_assessment = objectEdit
-//            }
         }
     }
     
@@ -88,7 +80,6 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         let assessment = fetchedResultsController.object(at: indexPath)
         setCell(cell, withAssessment: assessment)
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
-        print("asdasd")
         self.performSegue(withIdentifier: "showDetails", sender: self)
         return cell
     }

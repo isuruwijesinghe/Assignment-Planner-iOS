@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EventKit
 
 class EditAssessmentViewController: UIViewController {
 
@@ -75,13 +76,37 @@ class EditAssessmentViewController: UIViewController {
     @IBAction func editAssessment(_ sender: UIBarButtonItem) {
         if assmntNameTF.text != "" && assmntModuleTF.text != "" && valueTF.text != ""{
             
-            current_assessment?.name = assmntNameTF.text
+            let name = assmntNameTF.text
+            let due = dueDatePicker.date
+            
+            current_assessment?.name = name
             current_assessment?.module = assmntModuleTF.text
-            current_assessment?.due = dueDatePicker.date
+            current_assessment?.due = due
             let value: Double = Double(valueTF.text!)!
             current_assessment?.value = value
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            if addToCalender{
+                let eventStore: EKEventStore = EKEventStore()
+                eventStore.requestAccess(to: .event) {(granted, error) in
+                    if (granted) && (error == nil) {
+                        let event: EKEvent = EKEvent(eventStore: eventStore)
+                        event.title = name
+                        event.startDate = self.current_assessment?.start
+                        event.endDate = due
+                        event.calendar = eventStore.defaultCalendarForNewEvents
+                        do {
+                            try eventStore.save(event, span: .thisEvent)
+                        } catch let error as NSError {
+                            fatalError("Unresolved error \(error), \(error.userInfo)")
+                        }
+                    } else {
+//                        print("error: \(String(describing: error))")
+                    }
+                }
+            }
+        
             dismiss(animated: true, completion: nil)
             
         }else{

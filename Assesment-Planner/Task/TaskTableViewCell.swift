@@ -25,7 +25,7 @@ class TaskTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "0%"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
     
@@ -110,7 +110,7 @@ class TaskTableViewCell: UITableViewCell {
         shapeCompleteProgCircleLayer.strokeEnd = 0
         
         //set lables of the percentage
-        percentageLable.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
+        percentageLable.frame = CGRect(x: 0, y: 0, width: 75, height: 55)
         let percentageLablePosition = CGPoint(x: 852, y: 86)
         percentageLable.center = percentageLablePosition
         addSubview(percentageLable)

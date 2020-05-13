@@ -394,14 +394,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRu-0V-RVh">
+                                <rect key="frame" x="295.5" y="209.5" width="400" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="Meq-5Q-4Tf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BCR-ec-38B" firstAttribute="centerX" secondItem="M9n-Pe-OI2" secondAttribute="centerX" id="O8R-OH-lqY"/>
                             <constraint firstItem="h32-cj-GNu" firstAttribute="top" secondItem="R47-1g-HbM" secondAttribute="top" constant="20" id="SiP-oU-CvN"/>
+                            <constraint firstItem="KRu-0V-RVh" firstAttribute="centerX" secondItem="M9n-Pe-OI2" secondAttribute="centerX" id="Uzx-Jh-kca"/>
                             <constraint firstItem="XDx-Ug-GQt" firstAttribute="centerX" secondItem="M9n-Pe-OI2" secondAttribute="centerX" id="dgn-aL-gBg"/>
                             <constraint firstItem="h32-cj-GNu" firstAttribute="centerX" secondItem="M9n-Pe-OI2" secondAttribute="centerX" id="idi-fV-f8s"/>
                             <constraint firstItem="BCR-ec-38B" firstAttribute="top" secondItem="XDx-Ug-GQt" secondAttribute="bottom" constant="5" id="jrt-Vg-brA"/>
+                            <constraint firstItem="R47-1g-HbM" firstAttribute="bottom" secondItem="KRu-0V-RVh" secondAttribute="bottom" constant="20" id="ko5-G5-4yB"/>
                             <constraint firstItem="XDx-Ug-GQt" firstAttribute="top" secondItem="h32-cj-GNu" secondAttribute="bottom" constant="10" id="wyc-s1-iqJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R47-1g-HbM"/>
@@ -410,6 +421,7 @@
                         <outlet property="assessmentLevelLabel" destination="BCR-ec-38B" id="wii-1D-SwQ"/>
                         <outlet property="assessmentModuleLabel" destination="XDx-Ug-GQt" id="qwc-Id-xTU"/>
                         <outlet property="assessmentNameLabel" destination="h32-cj-GNu" id="Gb0-i6-BqO"/>
+                        <outlet property="assessmntNotesLabel" destination="KRu-0V-RVh" id="R0d-tT-gXD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVF-Ji-LXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -571,9 +583,9 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="173" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDK-kv-XIa">
-                                <rect key="frame" x="0.0" y="44" width="990.5" height="680"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="173" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDK-kv-XIa">
+                                <rect key="frame" x="0.0" y="46" width="990.5" height="678"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="173" id="SYw-U3-ud8" customClass="TaskTableViewCell" customModule="Assessment_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="990.5" height="173"/>
@@ -669,7 +681,7 @@
                             <constraint firstItem="Lbn-Su-FND" firstAttribute="leading" secondItem="XUg-3f-XYW" secondAttribute="leading" id="PDU-a1-4gY"/>
                             <constraint firstItem="rDK-kv-XIa" firstAttribute="bottom" secondItem="Iu3-Hc-zfs" secondAttribute="bottom" id="PwE-ve-EHV"/>
                             <constraint firstItem="rDK-kv-XIa" firstAttribute="leading" secondItem="Iu3-Hc-zfs" secondAttribute="leading" id="Vpa-7z-kYN"/>
-                            <constraint firstItem="rDK-kv-XIa" firstAttribute="top" secondItem="Lbn-Su-FND" secondAttribute="bottom" id="WId-Ef-pUO"/>
+                            <constraint firstItem="rDK-kv-XIa" firstAttribute="top" secondItem="Lbn-Su-FND" secondAttribute="bottom" constant="2" id="WId-Ef-pUO"/>
                             <constraint firstAttribute="trailing" secondItem="rDK-kv-XIa" secondAttribute="trailing" id="aGv-8b-eeR"/>
                             <constraint firstAttribute="trailing" secondItem="Lbn-Su-FND" secondAttribute="trailing" id="fVB-dN-6oS"/>
                         </constraints>
@@ -754,6 +766,9 @@
                             </datePicker>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wAs-NH-NdM">
                                 <rect key="frame" x="306" y="603" width="51" height="31"/>
+                                <connections>
+                                    <action selector="isCalanderValueChanged:" destination="8xd-KP-Ewm" eventType="valueChanged" id="ZwO-LS-bDf"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add To Calender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muM-4L-AIQ">
                                 <rect key="frame" x="169" y="608" width="127" height="21"/>

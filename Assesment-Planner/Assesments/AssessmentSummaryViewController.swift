@@ -14,6 +14,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
     @IBOutlet weak var assessmentNameLabel: UILabel!
     @IBOutlet weak var assessmentModuleLabel: UILabel!
     @IBOutlet weak var assessmentLevelLabel: UILabel!
+    @IBOutlet weak var assessmntNotesLabel: UILabel!
     //position of progress bars
     let assmntCompletePosition = CGPoint(x: 132, y: 120)
     let assmntDaysLefttPosition = CGPoint(x: 850, y: 120)
@@ -70,6 +71,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         assessmentNameLabel.text = current_assessment?.name
         assessmentModuleLabel.text = current_assessment?.module
         assessmentLevelLabel.text = "Level : \(current_assessment?.level ?? 3)"
+        assessmntNotesLabel.text = "NOTE : \(current_assessment?.notes ?? "")"
         
        //adding progress circle with average count
        var totalProgress = 0

@@ -13,6 +13,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var tasksTableView: UITableView!
     
+    @IBOutlet weak var editButton: UIBarButtonItem!
     var current_assessment: Assessment?
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var objectEdit: Task?
@@ -29,6 +30,20 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
          if segue.identifier == "editTask"{
             let controller = segue.destination as? EditTaskViewController
             controller!.task = objectEdit
+        }else if segue.identifier == "addTask" {
+            if let addTaskViewController = segue.destination as? AddTaskViewController {
+                addTaskViewController.current_assessment = current_assessment
+            }
+        }
+    }
+    
+    @IBAction func editBtnClicked(_ sender: UIBarButtonItem) {
+        if editButton.title == "Edit"{
+            tasksTableView.setEditing(true, animated: true)
+            editButton.title = "Done"
+        }else{
+            tasksTableView.setEditing(false, animated: true)
+            editButton.title = "Edit"
         }
     }
     
@@ -84,8 +99,13 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setCell(_ cell: TaskTableViewCell, indexPath: IndexPath){
-        let task = self.fetchedResultsController.fetchedObjects?[indexPath.row]
-        cell.task = task
+        if([fetchedResultsController.fetchedObjects!.count] > [0] && [fetchedResultsController.fetchedObjects!.count] > [indexPath.row]){
+            let task = self.fetchedResultsController.fetchedObjects?[indexPath.row]
+            cell.task = task
+        }else{
+            print("nil objects")
+        }
+        
     }
     
     

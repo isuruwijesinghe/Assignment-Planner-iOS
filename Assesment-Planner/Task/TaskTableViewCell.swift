@@ -19,7 +19,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var timeProgressBar: UIProgressView!
     
     var shapeCompleteProgCircleLayer = CAShapeLayer()
-    let completeProgCirclePosition = CGPoint(x: 812, y: 86)
+    let completeProgCirclePosition = CGPoint(x: 852, y: 86)
     
     let percentageLable: UILabel = {
         let label = UILabel()
@@ -30,6 +30,7 @@ class TaskTableViewCell: UITableViewCell {
     }()
     
     var task: Task?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -81,16 +82,13 @@ class TaskTableViewCell: UITableViewCell {
             
         }
     }
-    @IBAction func editButtonClick(_ sender: Any) {
-        
-    }
-    
    
     
     @IBAction func progressValueChnaged(_ sender: UISlider) {
-        let value = Int16(sender.value)
-        taskProgCompleteLabel.text = "\(value)% completed"
-        percentageLable.text = "\(value)%"
+        let value = Double(sender.value)
+        taskProgCompleteLabel.text = "\(Int(value))% completed"
+        percentageLable.text = "\(Int(value))%"
+        print("value --- \(value)")
         task?.progress = value
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
@@ -113,7 +111,7 @@ class TaskTableViewCell: UITableViewCell {
         
         //set lables of the percentage
         percentageLable.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
-        let percentageLablePosition = CGPoint(x: 812, y: 86)
+        let percentageLablePosition = CGPoint(x: 852, y: 86)
         percentageLable.center = percentageLablePosition
         addSubview(percentageLable)
         
@@ -146,10 +144,10 @@ class TaskTableViewCell: UITableViewCell {
             shapeCompleteProgCircleLayer.add(basicAnimation, forKey: "endStrokeKey")
             
         }
-    func setProgressValues(progress: Int16){
+    func setProgressValues(progress: Double){
         
-        taskProgCompleteLabel.text = "\(progress)% completed"
-        percentageLable.text = "\(progress)%"
+        taskProgCompleteLabel.text = "\(Int(progress))% completed"
+        percentageLable.text = "\(Int(progress))%"
         
         taskProgressSlider.setValue(Float(progress), animated: true)
         

@@ -35,7 +35,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
+//        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
     
@@ -55,6 +55,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
+            print("its here")
             if let indexPath = tableView.indexPathForSelectedRow {
             let object = fetchedResultsController.object(at: indexPath)
                 let controller = segue.destination as? AssessmentDetailViewController
@@ -87,8 +88,14 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         let assessment = fetchedResultsController.object(at: indexPath)
         setCell(cell, withAssessment: assessment)
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+        print("asdasd")
         self.performSegue(withIdentifier: "showDetails", sender: self)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.objectEdit = self.fetchedResultsController.object(at: indexPath)
+        self.performSegue(withIdentifier: "showDetails", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -102,7 +109,6 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (rowAction, view , handler)  in
             //TODO: edit the row at indexPath here
             self.objectEdit = self.fetchedResultsController.object(at: indexPath)
-            print("selected object - \(self.objectEdit?.name)")
             self.performSegue(withIdentifier: "editAssessment", sender: self)
 
         }

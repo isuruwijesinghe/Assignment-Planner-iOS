@@ -24,6 +24,7 @@ class AssessmentDetailViewController: UIViewController {
         configureView()
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "assessmentSummaryView"{
             if let assessmentSummaryViewController = segue.destination as? AssessmentSummaryViewController {

@@ -14,7 +14,6 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
     @IBOutlet weak var assessmentNameLabel: UILabel!
     @IBOutlet weak var assessmentModuleLabel: UILabel!
     @IBOutlet weak var assessmentLevelLabel: UILabel!
-    @IBOutlet weak var Slider: UISlider!
     //position of progress bars
     let assmntCompletePosition = CGPoint(x: 132, y: 120)
     let assmntDaysLefttPosition = CGPoint(x: 850, y: 120)
@@ -201,19 +200,6 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         shapeDaysLeftLayer.add(basicAnimationdays, forKey: "endStrokeKeyofday")
     }
     
-
-    @IBAction func onSilderValueChange(_ sender: UISlider) {
-                
-        let percentage = CGFloat(Slider.value) / 100
-        
-        shapeCompleteLayer.strokeEnd = percentage
-        self.percentageLable.text = "\(Int(Slider.value))%"
-        animateCircle()
-        
-//        shapeDaysLeftLayer.strokeEnd = percentage
-//        animateSecondCircle()
-        
-    }
     
     // MARK: - Fetched results controller
     var _fetchedResultsController: NSFetchedResultsController<Task>? = nil

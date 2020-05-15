@@ -53,7 +53,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,26 +66,27 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         setValuesToLabels()
     }
     
+    //set assessment values to the labels
     func setValuesToLabels(){
-                
+        
         assessmentNameLabel.text = current_assessment?.name
         assessmentModuleLabel.text = current_assessment?.module
         assessmentLevelLabel.text = "Level : \(current_assessment?.level ?? 3)"
         assessmntNotesLabel.text = "NOTE : \(current_assessment?.notes ?? "")"
         
-       //adding progress circle with average count
-       var totalProgress = 0
-       var progressPercent: CGFloat = 0.0
-       let taskCount = self.fetchedResultsController.fetchedObjects?.count ?? 0
-       if taskCount > 0 {
-           for task in (self.fetchedResultsController.fetchedObjects)! {
-               totalProgress += Int(task.progress)
-           }
-           progressPercent = CGFloat(totalProgress)/CGFloat(taskCount)/100.0
+        //adding progress circle with average count
+        var totalProgress = 0
+        var progressPercent: CGFloat = 0.0
+        let taskCount = self.fetchedResultsController.fetchedObjects?.count ?? 0
+        if taskCount > 0 {
+            for task in (self.fetchedResultsController.fetchedObjects)! {
+                totalProgress += Int(task.progress)
+            }
+            progressPercent = CGFloat(totalProgress)/CGFloat(taskCount)/100.0
             shapeCompleteLayer.strokeEnd = progressPercent
             self.percentageLable.text = "\(Int(progressPercent * 100))%"
             animateCircle()
-       }
+        }
         
         if current_assessment?.due != nil{
             let currentDate = Date()
@@ -104,11 +105,13 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
             let showingpercentage = (100 - timeleftpercentage) / 100
             shapeDaysLeftLayer.strokeEnd = showingpercentage
             
+            //animate the time circle
             animateSecondCircle()
         }
         
     }
     
+    //create the percentage circle
     private func setPercentageCircles() {
         
         //progress track circle
@@ -137,6 +140,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         
     }
     
+    //create the days left circle
     private func setDaysLeftCircles(){
         
         let trackDaysLayer = createCircleShapeLayer(strokeColor: UIColor.lightGray, fillColor: UIColor.clear, position: assmntDaysLefttPosition)
@@ -164,6 +168,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         
     }
     
+    // get values to create circles
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor, position: CGPoint) -> CAShapeLayer{
         
         let layer = CAShapeLayer()
@@ -177,10 +182,11 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         return layer
     }
     
+    //animate the percentage circle
     private func animateCircle() {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
-//        basicAnimation.toValue = 1
+        //        basicAnimation.toValue = 1
         basicAnimation.duration = 2
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
@@ -190,12 +196,13 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         
     }
     
+    //animate the time left circle
     private func animateSecondCircle(){
         let basicAnimationdays = CABasicAnimation(keyPath: "strokeEnd")
-                
+        
         //        basicAnimation.toValue = 1
         basicAnimationdays.duration = 2
-                
+        
         basicAnimationdays.fillMode = CAMediaTimingFillMode.forwards
         basicAnimationdays.isRemovedOnCompletion = false
         
@@ -242,5 +249,5 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
         
         return aFetchedResultsController as! NSFetchedResultsController<NSFetchRequestResult> as! NSFetchedResultsController<Task>
     }
-
+    
 }

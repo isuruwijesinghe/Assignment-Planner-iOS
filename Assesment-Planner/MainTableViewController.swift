@@ -19,13 +19,12 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        loadSavedData()
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -34,7 +33,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         
     }
     
-  
+    //edit button click function - on Toolbar
     @IBAction func editBtnClick(_ sender: UIBarButtonItem) {
         if buttonEdit.title == "Edit"{
             tableView.setEditing(true, animated: true)
@@ -48,33 +47,33 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     // MARK: - Segues
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
-            let object = fetchedResultsController.object(at: indexPath)
+                let object = fetchedResultsController.object(at: indexPath)
                 let controller = segue.destination as? AssessmentDetailViewController
                 controller!.assessment = object
             }
         }else if segue.identifier == "editAssessment"{
-                let controller = segue.destination as? EditAssessmentViewController
-                controller!.current_assessment = objectEdit
+            let controller = segue.destination as? EditAssessmentViewController
+            controller!.current_assessment = objectEdit
         }
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return fetchedResultsController.sections?.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         let sectionInfo = fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "assessmentCell", for: indexPath) as! AssessmentListTableViewCell
         let assessment = fetchedResultsController.object(at: indexPath)
@@ -94,6 +93,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         return true
     }
     
+    //cell slide controle fucntion delete and edit
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         
@@ -101,7 +101,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
             //TODO: edit the row at indexPath here
             self.objectEdit = self.fetchedResultsController.object(at: indexPath)
             self.performSegue(withIdentifier: "editAssessment", sender: self)
-
+            
         }
         editAction.backgroundColor = .purple
         
@@ -109,16 +109,16 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
             //TODO: Delete the row at indexPath here
             let context = self.fetchedResultsController.managedObjectContext
             context.delete(self.fetchedResultsController.object(at: indexPath))
-
-                do {
-                    try context.save()
-                } catch {
+            
+            do {
+                try context.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //                let nserror = error as NSError
-            //                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                //                let nserror = error as NSError
+                //                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-
+            
         }
         deleteAction.backgroundColor = .red
         let configuration = UISwipeActionsConfiguration(actions: [editAction,deleteAction])
@@ -126,7 +126,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     
-    
+    // set values of labels in the cell
     func setCell(_ cell: AssessmentListTableViewCell, withAssessment assessment: Assessment){
         
         cell.assmntNameLabel.text = assessment.name
@@ -145,12 +145,13 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         let diff = Calendar.current.dateComponents([.day, .hour, .minute], from: currentDate, to: dueDate!)
         cell.assmntDueTimeLabel.text = "\(diff.day!)d \(diff.hour!)h \(diff.minute!)m";
         
+        //if the due date passed it shows in red color
         if (currentDate > dueDate!) {
             cell.assmntDueTimeLabel.textColor = UIColor.red
         }
         
     }
-
+    
     
     // MARK: - Fetch CoreData results
     
@@ -166,7 +167,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         let sort = NSSortDescriptor(key: "name", ascending: false)
         fetchRequest.sortDescriptors = [sort]
         
-
+        
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: contex, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         
@@ -174,47 +175,47 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         
         do {
             try _fetchedResultsController!.performFetch()
-                tableView.reloadData()
-            } catch {
-                print("Fetch failed")
-            }
+            tableView.reloadData()
+        } catch {
+            print("Fetch failed")
+        }
         return _fetchedResultsController!
     }
-
+    
     var _fetchedResultsController: NSFetchedResultsController<Assessment>? = nil
     
-   
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-               tableView.beginUpdates()
-           }
-           
-           func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-               switch type {
-                   case .insert:
-                       tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-                   case .delete:
-                       tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-                   default:
-                       return
-               }
-           }
-           
-           func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-               switch type {
-                   case .insert:
-                       tableView.insertRows(at: [newIndexPath!], with: .fade)
-                   case .delete:
-                       tableView.deleteRows(at: [indexPath!], with: .fade)
-                   case .update:
-                       setCell(tableView.cellForRow(at: indexPath!)! as! AssessmentListTableViewCell, withAssessment: anObject as! Assessment)
-                   case .move:
-                       setCell(tableView.cellForRow(at: indexPath!)! as! AssessmentListTableViewCell, withAssessment: anObject as! Assessment)
-                       tableView.moveRow(at: indexPath!, to: newIndexPath!)
-               }
-           }
-           
-           func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-               tableView.endUpdates()
-           }
-
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            setCell(tableView.cellForRow(at: indexPath!)! as! AssessmentListTableViewCell, withAssessment: anObject as! Assessment)
+        case .move:
+            setCell(tableView.cellForRow(at: indexPath!)! as! AssessmentListTableViewCell, withAssessment: anObject as! Assessment)
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
 }

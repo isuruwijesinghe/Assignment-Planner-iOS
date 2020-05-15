@@ -13,15 +13,15 @@ class AssessmentDetailViewController: UIViewController {
     
     var managedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func configureView() {
-        // Update the user interface for the detail item.
-    }
-
+    //    func configureView() {
+    //        // Update the user interface for the detail item.
+    //    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        configureView()
+        //        configureView()
     }
     
     
@@ -31,31 +31,31 @@ class AssessmentDetailViewController: UIViewController {
                 assessmentSummaryViewController.current_assessment = assessment
             }
         }else if segue.identifier == "addTask" {
-                if let addTaskViewController = segue.destination as? AddTaskViewController {
-                    addTaskViewController.current_assessment = assessment
-                }
-        }else if segue.identifier == "tasksList" {
-                if let tasksViewController = segue.destination as? TaskTableViewController {
-                    tasksViewController.current_assessment = assessment
-                }
+            if let addTaskViewController = segue.destination as? AddTaskViewController {
+                addTaskViewController.current_assessment = assessment
             }
+        }else if segue.identifier == "tasksList" {
+            if let tasksViewController = segue.destination as? TaskTableViewController {
+                tasksViewController.current_assessment = assessment
+            }
+        }
     }
     
     var assessment: Assessment?{
         didSet{
             //update the view
-            configureView()
+            //            configureView()
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

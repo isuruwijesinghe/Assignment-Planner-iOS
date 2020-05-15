@@ -12,11 +12,11 @@ import CoreData
 class TaskTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tasksTableView: UITableView!
-    
     @IBOutlet weak var editButton: UIBarButtonItem!
     var current_assessment: Assessment?
     let contex = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var objectEdit: Task?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +24,19 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.tasksTableView.delegate = self
         self.tasksTableView.dataSource = self
         // Do any additional setup after loading the view.
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tasksTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "editTask"{
+        if segue.identifier == "editTask"{
             let controller = segue.destination as? EditTaskViewController
             controller!.task = objectEdit
+            controller?.instanceOFTaskTableClass = self
         }else if segue.identifier == "addTask" {
             if let addTaskViewController = segue.destination as? AddTaskViewController {
                 addTaskViewController.current_assessment = current_assessment
@@ -37,6 +44,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //edit button click on task tool bar
     @IBAction func editBtnClicked(_ sender: UIBarButtonItem) {
         if editButton.title == "Edit"{
             tasksTableView.setEditing(true, animated: true)
@@ -63,12 +71,12 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
-     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (rowAction, view , handler)  in
@@ -82,28 +90,29 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
             //TODO: Delete the row at indexPath here
             let context = self.fetchedResultsController.managedObjectContext
             context.delete(self.fetchedResultsController.object(at: indexPath))
-
-                do {
-                    try context.save()
-                } catch {
+            
+            do {
+                try context.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //                let nserror = error as NSError
-            //                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                //                let nserror = error as NSError
+                //                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-
+            
         }
         deleteAction.backgroundColor = .red
         let configuration = UISwipeActionsConfiguration(actions: [editAction,deleteAction])
         return configuration
     }
     
+    //set cell task values
     func setCell(_ cell: TaskTableViewCell, indexPath: IndexPath){
         if([fetchedResultsController.fetchedObjects!.count] > [0] && [fetchedResultsController.fetchedObjects!.count] > [indexPath.row]){
             let task = self.fetchedResultsController.fetchedObjects?[indexPath.row]
             cell.task = task
         }else{
-            print("nil objects")
+            //            print("nil objects")
         }
         
     }
@@ -115,7 +124,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var fetchedResultsController: NSFetchedResultsController<Task> {
         if _fetchedResultsController != nil {
-        return _fetchedResultsController!
+            return _fetchedResultsController!
         }
         
         let current_assessment = self.current_assessment
@@ -129,7 +138,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
             let predicate = NSPredicate(format: "taskAssessment = %@", current_assessment!)
             fetchRequest.predicate = predicate
         }else{
-             //TODO: Handle display when a assessment is not selected
+            //TODO: Handle display when a assessment is not selected
         }
         
         let aFetchedResultsController = NSFetchedResultsController(
@@ -181,6 +190,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        //        tasksTableView.reloadData()
         self.tasksTableView.endUpdates()
     }
     

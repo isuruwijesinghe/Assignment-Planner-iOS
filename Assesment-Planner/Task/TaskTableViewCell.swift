@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class TaskTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var taskNoteLabel: UILabel!
     @IBOutlet weak var taskProgressSlider: UISlider!
@@ -44,14 +44,14 @@ class TaskTableViewCell: UITableViewCell {
         self.timeProgressBar.layer.cornerRadius = 10.0
         self.timeProgressBar.clipsToBounds = true
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
         taskNameLabel.text = task?.name
         taskNoteLabel.text = task?.notes
-        
+        //set progressar values
         setProgressValues(progress: task?.progress ?? 0)
         
         
@@ -69,11 +69,11 @@ class TaskTableViewCell: UITableViewCell {
             timeProgressBar.progressTintColor = UIColor.green
             timeProgressBar.progress = elapsedPercentage
             
+            //if the time is due shows in red
             if (elapsedPercentage > 1) {
                 remainingTimeLabel.textColor = UIColor.red
                 timeProgressBar.progressTintColor = UIColor.red
             }
-            
             
             
             let elapsedTime = Calendar.current.dateComponents([.day, .hour], from: (task?.start)!, to: Date())
@@ -82,13 +82,13 @@ class TaskTableViewCell: UITableViewCell {
             
         }
     }
-   
     
+    // the progress slider value changed and save to core data
     @IBAction func progressValueChnaged(_ sender: UISlider) {
         let value = Double(sender.value)
         taskProgCompleteLabel.text = "\(Int(value))% completed"
         percentageLable.text = "\(Int(value))%"
-        print("value --- \(value)")
+        
         task?.progress = value
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
@@ -97,14 +97,15 @@ class TaskTableViewCell: UITableViewCell {
         animateCircle()
     }
     
+    // create circles to show percentages
     func setPercentageCircles(){
+        
         //progress track circle
         let tracklayer = createCircleShapeLayer(strokeColor: UIColor.lightGray, fillColor: UIColor.clear, position:completeProgCirclePosition)
         layer.addSublayer(tracklayer)
         
+        //pregress circle
         shapeCompleteProgCircleLayer = createCircleShapeLayer(strokeColor:UIColor.red, fillColor:UIColor.clear, position:completeProgCirclePosition)
-        
-        //progress circle
         //TO get into 12'clock top
         shapeCompleteProgCircleLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
         shapeCompleteProgCircleLayer.strokeEnd = 0
@@ -115,10 +116,10 @@ class TaskTableViewCell: UITableViewCell {
         percentageLable.center = percentageLablePosition
         addSubview(percentageLable)
         
-        
         layer.addSublayer(shapeCompleteProgCircleLayer)
     }
     
+    //set values to create circles
     private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor, position: CGPoint) -> CAShapeLayer{
         
         let layer = CAShapeLayer()
@@ -132,18 +133,21 @@ class TaskTableViewCell: UITableViewCell {
         return layer
     }
     
+    // circle animation to fill
     private func animateCircle() {
-            let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-            
-    //        basicAnimation.toValue = 1
-            basicAnimation.duration = 2
-            
-            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-            basicAnimation.isRemovedOnCompletion = false
-            
-            shapeCompleteProgCircleLayer.add(basicAnimation, forKey: "endStrokeKey")
-            
-        }
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        //        basicAnimation.toValue = 1
+        basicAnimation.duration = 2
+        
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeCompleteProgCircleLayer.add(basicAnimation, forKey: "endStrokeKey")
+        
+    }
+    
+    //set progress bar values and call animation
     func setProgressValues(progress: Double){
         
         taskProgCompleteLabel.text = "\(Int(progress))% completed"

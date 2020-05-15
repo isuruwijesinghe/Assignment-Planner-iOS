@@ -11,7 +11,7 @@ import CoreData
 import UserNotifications
 
 class EditTaskViewController: UIViewController {
-
+    
     @IBOutlet weak var taskNameTF: UITextField!
     @IBOutlet weak var taskNoteTF: UITextField!
     @IBOutlet weak var startDatePicker: UIDatePicker!
@@ -22,9 +22,11 @@ class EditTaskViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var addToCalender: Bool = false
     
+    var instanceOFTaskTableClass: TaskTableViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         if (task != nil) {
             taskNameTF.text = task?.name
@@ -33,11 +35,12 @@ class EditTaskViewController: UIViewController {
             taskNoteTF.text = task?.notes
         }
     }
-    
+    //add to calander switch value
     @IBAction func isCalanderValueChanged(_ sender: UISwitch) {
         addToCalender = sender.isOn
     }
     
+    // edit button click save changed date to core data and show errors
     @IBAction func editTask(_ sender: UIBarButtonItem) {
         //set data to core data
         task?.start = startDatePicker.date
@@ -65,7 +68,8 @@ class EditTaskViewController: UIViewController {
                 let request = UNNotificationRequest(identifier: "taskDue", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
-            
+            //reload table after save
+            instanceOFTaskTableClass?.tasksTableView.reloadData()
             dismiss(animated: true, completion: nil)
             
         }else{
@@ -86,6 +90,7 @@ class EditTaskViewController: UIViewController {
         
     }
     
+    //cancel button click
     @IBAction func cancelBtnClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }

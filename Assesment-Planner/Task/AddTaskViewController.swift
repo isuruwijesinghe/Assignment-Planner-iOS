@@ -11,7 +11,7 @@ import CoreData
 import UserNotifications
 
 class AddTaskViewController: UIViewController {
-
+    
     @IBOutlet weak var taskNameTF: UITextField!
     @IBOutlet weak var notesTF: UITextField!
     @IBOutlet weak var startDatePicker: UIDatePicker!
@@ -24,17 +24,19 @@ class AddTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         let currentDate = NSDate()
         startDatePicker.minimumDate = currentDate as Date
         dueDatePicker.minimumDate = currentDate as Date
     }
     
+    //add to calander switch
     @IBAction func calanderValueChanged(_ sender: UISwitch) {
         addToCalender = sender.isOn
     }
     
+    // add button click set the values core data and show errors
     @IBAction func addNewTask(_ sender: UIBarButtonItem) {
         
         let redColour = UIColor.red
@@ -64,6 +66,7 @@ class AddTaskViewController: UIViewController {
                 new_task.start = startDate
                 new_task.due = dueDate
                 
+                //save to core data
                 current_assessment?.addToTasks(new_task)
                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
@@ -86,6 +89,7 @@ class AddTaskViewController: UIViewController {
                 dismiss(animated: true, completion: nil)
             }
         }else{
+            //show and error if empty
             taskNameTF.layer.borderColor = redColour.cgColor
             taskNameTF.layer.borderWidth = 1.0
             animation.fromValue = NSValue(cgPoint: CGPoint(x: taskNameTF.center.x - 10, y: taskNameTF.center.y))
@@ -95,11 +99,12 @@ class AddTaskViewController: UIViewController {
         }
     }
     
+    //cancel button click
     @IBAction func cancelClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-
-
-
+    
+    
+    
 }

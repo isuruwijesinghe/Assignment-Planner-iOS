@@ -25,13 +25,14 @@ class AddAssessmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         let currentDate = NSDate()
         assmntDueDate.minimumDate = currentDate as Date
     }
     
+    // select level segmented control
     @IBAction func levelSelected(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -49,23 +50,25 @@ class AddAssessmentViewController: UIViewController {
         }
     }
     
-    
+    //add to calander switch listner
     @IBAction func calanderValueChanged(_ sender: UISwitch) {
         addToCalender = sender.isOn
         
     }
     
+    //add assignment button lick
     @IBAction func addNewAssessment(_ sender: UIBarButtonItem) {
         
         if assmntName.text != "" && assmntModule.text != "" && assmntValue.text != ""{
             
+            //save values to core data
             let new_Assesment = Assessment(context: contex)
             
             let name = assmntName.text
             let module = assmntModule.text
             let dueDate = assmntDueDate.date
             let value = Double(assmntValue.text!)
-    
+            
             let notes = assmntNotes.text
             
             new_Assesment.name = name
@@ -78,6 +81,7 @@ class AddAssessmentViewController: UIViewController {
             new_Assesment.start = Date()
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
+            //add to calander
             if addToCalender{
                 let eventStore: EKEventStore = EKEventStore()
                 eventStore.requestAccess(to: .event) {(granted, error) in
@@ -97,7 +101,8 @@ class AddAssessmentViewController: UIViewController {
                     }
                 }
             }
-        dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
+            
         }else{
             //alert to fill the fields
             let redColour = UIColor.red
@@ -136,18 +141,19 @@ class AddAssessmentViewController: UIViewController {
         
     }
     
+    // cancel button click
     @IBAction func cancelBtnClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

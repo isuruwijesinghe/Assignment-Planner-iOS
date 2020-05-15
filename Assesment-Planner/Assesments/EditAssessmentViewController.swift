@@ -17,6 +17,7 @@ class EditAssessmentViewController: UIViewController {
     @IBOutlet weak var assmntNotesTF: UITextField!
     @IBOutlet weak var levelSegment: UISegmentedControl!
     @IBOutlet weak var valueTF: UITextField!
+    @IBOutlet weak var markTF: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
     var current_assessment: Assessment?
@@ -34,6 +35,7 @@ class EditAssessmentViewController: UIViewController {
         assmntNotesTF.text = current_assessment?.notes
         valueTF.text = String(current_assessment?.value ?? 0)
         dueDatePicker.date = current_assessment!.due ?? Date()
+        markTF.text = String(current_assessment?.mark ?? 0)
         
         //segmented view for edit project
         switch current_assessment?.level {
@@ -84,12 +86,15 @@ class EditAssessmentViewController: UIViewController {
             
             let name = assmntNameTF.text
             let due = dueDatePicker.date
+            let module = assmntModuleTF.text
+            let value: Double = Double(valueTF.text ?? "0")!
+            let mark : Double = Double(markTF.text ?? "0")!
             
             current_assessment?.name = name
-            current_assessment?.module = assmntModuleTF.text
+            current_assessment?.module = module
             current_assessment?.due = due
-            let value: Double = Double(valueTF.text!)!
             current_assessment?.value = value
+            current_assessment?.mark = mark
             
             //save to core data
             (UIApplication.shared.delegate as! AppDelegate).saveContext()

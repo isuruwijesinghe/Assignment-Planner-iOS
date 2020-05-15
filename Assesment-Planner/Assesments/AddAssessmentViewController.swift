@@ -16,6 +16,7 @@ class AddAssessmentViewController: UIViewController {
     @IBOutlet weak var assmntNotes: UITextField!
     @IBOutlet weak var levelSegmented: UISegmentedControl!
     @IBOutlet weak var assmntValue: UITextField!
+    @IBOutlet weak var assmntMarkTF: UITextField!
     @IBOutlet weak var assmntDueDate: UIDatePicker!
     @IBOutlet weak var calenderSwitch: UISwitch!
     
@@ -68,14 +69,16 @@ class AddAssessmentViewController: UIViewController {
             let module = assmntModule.text
             let dueDate = assmntDueDate.date
             let value = Double(assmntValue.text!)
+            let mark = Double(assmntMarkTF.text!)
             
             let notes = assmntNotes.text
             
             new_Assesment.name = name
             new_Assesment.module = module
-            new_Assesment.notes = notes
+            new_Assesment.notes = notes ?? ""
             new_Assesment.level = level
             new_Assesment.value = value ?? 0
+            new_Assesment.mark = mark ?? 0
             
             new_Assesment.due = dueDate
             new_Assesment.start = Date()

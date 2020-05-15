@@ -13,6 +13,8 @@ class AssessmentListTableViewCell: UITableViewCell {
     @IBOutlet weak var assmntModuleLabel: UILabel!
     @IBOutlet weak var assmntDueDateLabel: UILabel!
     @IBOutlet weak var assmntDueTimeLabel: UILabel!
+    @IBOutlet weak var assmntValueLabel: UILabel!
+    @IBOutlet weak var assmntMarkLabel: UILabel!
     
 
     override func awakeFromNib() {

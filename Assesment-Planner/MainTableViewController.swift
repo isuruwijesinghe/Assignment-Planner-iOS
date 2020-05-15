@@ -132,6 +132,9 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
         cell.assmntNameLabel.text = assessment.name
         cell.assmntModuleLabel.text = assessment.module
         
+        cell.assmntValueLabel.text = "Value: \(Int(assessment.value))%"
+        cell.assmntMarkLabel.text = "Mark: \(Int(assessment.mark))%"
+        
         let dueDate = assessment.due
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

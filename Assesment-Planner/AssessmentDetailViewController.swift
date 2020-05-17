@@ -13,6 +13,8 @@ class AssessmentDetailViewController: UIViewController {
     
     var managedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var mainController: MainTableViewController?
+    
     //    func configureView() {
     //        // Update the user interface for the detail item.
     //    }
@@ -39,6 +41,10 @@ class AssessmentDetailViewController: UIViewController {
                 tasksViewController.current_assessment = assessment
             }
         }
+    }
+    
+    @IBAction func refreshButtonClicked(_ sender: UIBarButtonItem) {
+        mainController?.tableView.reloadData()
     }
     
     var assessment: Assessment?{

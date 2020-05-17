@@ -42,9 +42,9 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
             tableView.setEditing(false, animated: true)
             buttonEdit.title = "Edit"
         }
-        
-        
     }
+    
+    
     
     // MARK: - Segues
     
@@ -54,6 +54,7 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
                 let object = fetchedResultsController.object(at: indexPath)
                 let controller = segue.destination as? AssessmentDetailViewController
                 controller!.assessment = object
+                controller?.mainController = self
             }
         }else if segue.identifier == "editAssessment"{
             let controller = segue.destination as? EditAssessmentViewController

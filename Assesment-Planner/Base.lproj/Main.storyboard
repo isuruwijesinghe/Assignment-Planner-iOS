@@ -18,7 +18,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-Je-duc">
                                 <rect key="frame" x="0.0" y="0.0" width="990.5" height="50"/>
                                 <items>
-                                    <navigationItem title="Tasks" id="3uD-GD-Sfr"/>
+                                    <navigationItem title="Tasks" id="3uD-GD-Sfr">
+                                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="ea0-DO-iL1">
+                                            <connections>
+                                                <action selector="refreshButtonClicked:" destination="ntz-EA-SiZ" id="7R0-TX-3xn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR9-XD-luB">
@@ -1050,6 +1056,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>

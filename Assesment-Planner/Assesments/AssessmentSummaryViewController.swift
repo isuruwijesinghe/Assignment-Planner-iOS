@@ -69,8 +69,8 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
     //set assessment values to the labels
     func setValuesToLabels(){
         
-        assessmentNameLabel.text = current_assessment?.name
-        assessmentModuleLabel.text = current_assessment?.module
+        assessmentNameLabel.text = current_assessment?.name ?? "No Assessment Available yet!"
+        assessmentModuleLabel.text = current_assessment?.module ?? "Please Add an Assessment"
         assessmentLevelLabel.text = "Level : \(current_assessment?.level ?? 3)"
         assessmntNotesLabel.text = "NOTE : \(current_assessment?.notes ?? "")"
         

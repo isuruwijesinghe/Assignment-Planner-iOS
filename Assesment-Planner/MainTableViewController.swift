@@ -31,6 +31,15 @@ class MainTableViewController: UITableViewController, NSFetchedResultsController
             detailViewController = controllers[controllers.count-1] as? AssessmentDetailViewController
         }
         
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
     }
     
     //edit button click function - on Toolbar

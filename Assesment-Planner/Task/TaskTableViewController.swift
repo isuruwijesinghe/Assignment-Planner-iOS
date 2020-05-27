@@ -25,7 +25,6 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         self.tasksTableView.dataSource = self
         // Do any additional setup after loading the view.
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +134,7 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         if current_assessment != nil {
-            let predicate = NSPredicate(format: "taskAssessment = %@", current_assessment!)
+            let predicate = NSPredicate(format: "taskAssessment == %@", current_assessment!)
             fetchRequest.predicate = predicate
         }else{
             //TODO: Handle display when a assessment is not selected
@@ -150,7 +149,9 @@ class TaskTableViewController: UIViewController, UITableViewDelegate, UITableVie
         _fetchedResultsController = aFetchedResultsController
         
         do {
+            if current_assessment != nil {
             try _fetchedResultsController!.performFetch()
+            }
         } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

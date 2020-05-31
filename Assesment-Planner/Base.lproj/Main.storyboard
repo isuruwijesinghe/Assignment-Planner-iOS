@@ -18,7 +18,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nA4-Je-duc">
                                 <rect key="frame" x="0.0" y="0.0" width="990.5" height="50"/>
                                 <items>
-                                    <navigationItem title="Tasks" id="3uD-GD-Sfr">
+                                    <navigationItem title="Summary" id="3uD-GD-Sfr">
                                         <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="ea0-DO-iL1">
                                             <connections>
                                                 <action selector="refreshButtonClicked:" destination="ntz-EA-SiZ" id="7R0-TX-3xn"/>
@@ -85,7 +85,7 @@
                                                 <constraint firstAttribute="width" constant="260" id="UfH-HZ-5A2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="module name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HY8-wh-Ofh">
@@ -162,11 +162,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Assessments" id="gOP-BS-bKv">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="Xsi-Og-Aaa">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editBtnClick:" destination="hut-a2-256" id="iKg-ap-Vrc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" image="plus" catalog="system" id="Zhk-cF-cJj">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="WPO-e5-12S" kind="popoverPresentation" identifier="addAssessment" popoverAnchorBarButtonItem="Zhk-cF-cJj" id="MgO-SP-HVg">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -275,6 +277,7 @@
                                 <items>
                                     <navigationItem title="Add Assessment" id="E9s-a7-qDl">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Wew-cR-Ejs">
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelBtnClicked:" destination="WPO-e5-12S" id="C3u-cR-sIW"/>
                                             </connections>
@@ -383,6 +386,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="os9-hz-gBw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="hut-a2-256" kind="relationship" relationship="rootViewController" id="6IN-cQ-Ya0"/>
@@ -419,7 +423,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Pg5-uC-G90"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDx-Ug-GQt">
@@ -495,6 +499,7 @@
                                 <items>
                                     <navigationItem title="Add Task" id="g7U-x3-MEh">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="hLb-Y5-EXd">
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelClicked:" destination="hA5-Rf-icZ" id="BZU-Rn-zm7"/>
                                             </connections>
@@ -615,12 +620,14 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem title="Edit" id="EW2-b4-chc">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="editBtnClicked:" destination="jZh-MO-3X7" id="GGE-cg-kFa"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="wZf-aj-yc9"/>
                                     <barButtonItem title="Item" image="plus" catalog="system" id="kEi-NJ-8q9">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="hA5-Rf-icZ" kind="popoverPresentation" identifier="addTask" popoverAnchorBarButtonItem="kEi-NJ-8q9" id="HEa-zL-Mog">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -628,6 +635,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="173" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDK-kv-XIa">
                                 <rect key="frame" x="0.0" y="46" width="990.5" height="678"/>
@@ -647,7 +655,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="opE-Jr-Hrm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task notes" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoD-aC-VvY">
@@ -764,6 +772,7 @@
                                 <items>
                                     <navigationItem title="Edit Task" id="bUR-iy-nGM">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="l41-xz-h2j">
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelBtnClicked:" destination="8xd-KP-Ewm" id="SJz-zf-Z4p"/>
                                             </connections>
@@ -957,6 +966,7 @@
                                 <items>
                                     <navigationItem title="Edit Assessment" id="yMZ-S0-jgK">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="qwt-zK-mm2">
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelBtnClicked:" destination="fVv-cb-bJ2" id="gA0-iw-65D"/>
                                             </connections>

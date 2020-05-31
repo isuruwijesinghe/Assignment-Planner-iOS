@@ -99,6 +99,33 @@ class AddAssessmentViewController: UIViewController {
                         } catch let error as NSError {
                             fatalError("Unresolved error \(error), \(error.userInfo)")
                         }
+                        
+                        //add to reminder
+                        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+                            (granted, error) in
+                            if (granted) && (error == nil) {
+                                
+                                let reminder:EKReminder = EKReminder(eventStore: eventStore)
+                                reminder.title = "\(name ?? "Assessment")"
+                                reminder.priority = 2
+                                reminder.completionDate = dueDate
+                                reminder.notes = notes
+                                
+                                let alarmTime = dueDate
+                                let alarm = EKAlarm(absoluteDate: alarmTime)
+                                reminder.addAlarm(alarm)
+                                
+                                reminder.calendar = eventStore.defaultCalendarForNewReminders()
+                                
+                                do {
+                                    try eventStore.save(reminder, commit: true)
+                                } catch {
+                                    fatalError("Unresolved error \(error), \(error)")
+                                }
+                                print("Reminder saved")
+                            }
+                        })
+                        
                     } else {
                         print("error: \(String(describing: error))")
                     }

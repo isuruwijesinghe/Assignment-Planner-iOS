@@ -87,11 +87,13 @@ class EditAssessmentViewController: UIViewController {
             let name = assmntNameTF.text
             let due = dueDatePicker.date
             let module = assmntModuleTF.text
+            let note = assmntNotesTF.text
             let value: Double = Double(valueTF.text ?? "0")!
             let mark : Double = Double(markTF.text ?? "0")!
             
             current_assessment?.name = name
             current_assessment?.module = module
+            current_assessment?.notes = note
             current_assessment?.due = due
             current_assessment?.value = value
             current_assessment?.mark = mark
@@ -114,8 +116,34 @@ class EditAssessmentViewController: UIViewController {
                         } catch let error as NSError {
                             fatalError("Unresolved error \(error), \(error.userInfo)")
                         }
+                        
+                        //add to reminder                    
+                        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+                            (granted, error) in
+                            if (granted) && (error == nil) {
+                                
+                                let reminder:EKReminder = EKReminder(eventStore: eventStore)
+                                reminder.title = "\(name ?? "Assessment")"
+                                reminder.priority = 2
+                                reminder.completionDate = due
+                                reminder.notes = note
+                                
+                                let alarmTime = due
+                                let alarm = EKAlarm(absoluteDate: alarmTime)
+                                reminder.addAlarm(alarm)
+                                
+                                reminder.calendar = eventStore.defaultCalendarForNewReminders()
+                                
+                                do {
+                                    try eventStore.save(reminder, commit: true)
+                                } catch {
+                                    fatalError("Unresolved error \(error), \(error)")
+                                }
+                                print("Reminder saved")
+                            }
+                        })
                     } else {
-                        //                        print("error: \(String(describing: error))")
+                        print("error: \(String(describing: error))")
                     }
                 }
             }

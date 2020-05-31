@@ -66,7 +66,7 @@ class TaskTableViewCell: UITableViewCell {
             
             let elapsedPercentage = (timeElapsed/length)
             
-            timeProgressBar.progressTintColor = UIColor.green
+            timeProgressBar.progressTintColor = UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
             timeProgressBar.progress = elapsedPercentage
             
             //if the time is due shows in red
@@ -152,11 +152,18 @@ class TaskTableViewCell: UITableViewCell {
         
         taskProgCompleteLabel.text = "\(Int(progress))% completed"
         percentageLable.text = "\(Int(progress))%"
-        
         taskProgressSlider.setValue(Float(progress), animated: true)
+        
+        //change color to blue or red if its above 75 or less
+        if Int(progress) <= 75 {
+            shapeCompleteProgCircleLayer.strokeColor = UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor
+        }else{
+            shapeCompleteProgCircleLayer.strokeColor = UIColor.red.cgColor
+        }
         
         let progValueToFload = CGFloat(progress) / 100
         shapeCompleteProgCircleLayer.strokeEnd = CGFloat(progValueToFload)
+        
         animateCircle()
         
         

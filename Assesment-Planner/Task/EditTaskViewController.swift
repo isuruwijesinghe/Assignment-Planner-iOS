@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import EventKit
 
 class EditTaskViewController: UIViewController {
     
@@ -67,6 +68,36 @@ class EditTaskViewController: UIViewController {
                 let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
                 let request = UNNotificationRequest(identifier: "taskDue", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                
+                //add to reminder
+                let eventStore: EKEventStore = EKEventStore()
+                eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+                    granted, error in
+                    if (granted) && (error == nil) {
+
+                        let reminder:EKReminder = EKReminder(eventStore: eventStore)
+                        reminder.title = "\(self.taskNameTF.text ?? "Task")"
+                        reminder.priority = 2
+                        reminder.completionDate = self.dueDatePicker.date
+                        reminder.notes = self.taskNoteTF.text
+
+
+                        let alarmTime = self.dueDatePicker.date
+                        let alarm = EKAlarm(absoluteDate: alarmTime)
+                        reminder.addAlarm(alarm)
+
+                        reminder.calendar = eventStore.defaultCalendarForNewReminders()
+
+
+                        do {
+                            try eventStore.save(reminder, commit: true)
+                        } catch {
+                            print("Cannot save")
+                            return
+                        }
+                        print("Reminder saved")
+                    }
+                })
             }
             //reload table after save
             instanceOFTaskTableClass?.tasksTableView.reloadData()

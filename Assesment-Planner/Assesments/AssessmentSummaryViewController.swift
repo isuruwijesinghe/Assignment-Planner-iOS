@@ -85,6 +85,13 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
             progressPercent = CGFloat(totalProgress)/CGFloat(taskCount)/100.0
             shapeCompleteLayer.strokeEnd = progressPercent
             self.percentageLable.text = "\(Int(progressPercent * 100))%"
+            //change color to blue or red if its above 75 or less
+            if Int(progressPercent * 100) <= 75 {
+                shapeCompleteLayer.strokeColor = UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor
+            }else{
+                shapeCompleteLayer.strokeColor = UIColor.red.cgColor
+            }
+            //animate the progress circle
             animateCircle()
         }
         
@@ -104,6 +111,12 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
             let timeleftpercentage = (CGFloat(current / total) * 100)
             let showingpercentage = (100 - timeleftpercentage) / 100
             shapeDaysLeftLayer.strokeEnd = showingpercentage
+            //change color to blue or red if its above 75 or less
+            if Int(showingpercentage) <= 75 {
+                shapeDaysLeftLayer.strokeColor = UIColor.init(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor
+            }else{
+                shapeDaysLeftLayer.strokeColor = UIColor.red.cgColor
+            }
             
             //animate the time circle
             animateSecondCircle()
@@ -186,7 +199,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
     private func animateCircle() {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
-        //        basicAnimation.toValue = 1
+        //basicAnimation.toValue = 1
         basicAnimation.duration = 2
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
@@ -200,7 +213,7 @@ class AssessmentSummaryViewController: UIViewController, NSFetchedResultsControl
     private func animateSecondCircle(){
         let basicAnimationdays = CABasicAnimation(keyPath: "strokeEnd")
         
-        //        basicAnimation.toValue = 1
+        //basicAnimation.toValue = 1
         basicAnimationdays.duration = 2
         
         basicAnimationdays.fillMode = CAMediaTimingFillMode.forwards
